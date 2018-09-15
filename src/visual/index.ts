@@ -16,6 +16,6 @@ export default function render(finalizedBucketizedFFT: Array<number>){
     const begin = i*(width/NUM_BARS) + BAR_PADDING/2;
     const end = (i+1)*(width/NUM_BARS) - BAR_PADDING/2;
     ctx.fillStyle = 'orange';
-    ctx.fillRect(begin, height/(finalizedBucketizedFFT[i]+1), end-begin, finalizedBucketizedFFT[i]);
+    ctx.fillRect(begin, height/(finalizedBucketizedFFT[i]+1), end-begin, height - height/(finalizedBucketizedFFT[i]+1));
   }
 }
