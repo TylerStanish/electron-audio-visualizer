@@ -20,6 +20,10 @@
   ],
   "author": "GitHub",
   "license": "CC0-1.0",
+  "dependencies": {
+    "fourier-transform": "^1.1.2",
+    "node-core-audio": "github:ZECTBynmo/node-core-audio"
+  },
   "devDependencies": {
     "electron": "^2.0.8"
   }

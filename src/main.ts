@@ -41,3 +41,23 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+const coreAudio = require('node-core-audio');
+const ft = require('fourier-transform/asm');
+
+import processAudio from "./audio";
+
+let engine = coreAudio.createNewAudioEngine();
+
+const options = {
+  inputChannels: 1,
+  outputChannels: 1,
+  inputDevice: 2
+};
+
+engine.setOptions(options);
+
+engine.addAudioCallback(function(inputBuffer){
+  let spectrum = ft(inputBuffer[0]);
+  processAudio(spectrum);
+  // return inputBuffer;
+});
