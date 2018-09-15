@@ -1,0 +1,26 @@
+{
+  "name": "electron-quick-start",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron build/main.js",
+    "build": "tsc --outDir build src/*.ts",
+    "build-watch": "tsc --outDir build *.ts --watch",
+    "clean": "rm -rf build",
+    "dev": "npm run clean && npm run build-watch"
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^2.0.8"
+  }
+}
