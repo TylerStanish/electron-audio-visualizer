@@ -59,5 +59,5 @@ engine.setOptions(options);
 engine.addAudioCallback(function(inputBuffer){
   let spectrum = ft(inputBuffer[0]);
   processAudio(spectrum);
-  // return inputBuffer;
+  return inputBuffer;
 });
