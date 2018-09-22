@@ -4,7 +4,8 @@ import * as path from 'path';
 let mainWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({width: 800, height: 600});
+  mainWindow = new BrowserWindow({width: 1920, height: 600});
+  // mainWindow = new BrowserWindow({width: 900, height: 600});
 
   mainWindow.loadFile(path.resolve(__dirname, '../index.html'));
 
@@ -41,3 +42,4 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
