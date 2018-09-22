@@ -1,21 +1,24 @@
 import {BAR_PADDING, NUM_BARS} from "../config";
 
+let canvas = <HTMLCanvasElement> window.document.getElementById('canvas');
+let ctx: CanvasRenderingContext2D = canvas.getContext('2d');
+
+let lastFFT = [];
+
 export default function render(finalizedBucketizedFFT: Array<number>){
-  let canvas = <HTMLCanvasElement> window.document.getElementById('canvas');
-  let ctx: CanvasRenderingContext2D = canvas.getContext('2d');
 
-  canvas.height = innerHeight;
-  canvas.width = innerWidth;
-  const {width, height} = canvas;
-
-  if(finalizedBucketizedFFT.length !== NUM_BARS){
-    // alert('ayyy');
-  }
+  canvas.height = 300;
+  canvas.width = 900;
 
   for(let i=0; i<NUM_BARS; i++){
-    const begin = i*(width/NUM_BARS) + BAR_PADDING/2;
-    const end = (i+1)*(width/NUM_BARS) - BAR_PADDING/2;
     ctx.fillStyle = 'orange';
-    ctx.fillRect(begin, height/(finalizedBucketizedFFT[i]+1), end-begin, height - height/(finalizedBucketizedFFT[i]+1));
+    drawRect(finalizedBucketizedFFT[i], i, ctx);
   }
+  lastFFT = finalizedBucketizedFFT;
+}
+
+function drawRect(ele, i, ctx){
+  const begin = i*(canvas.width/NUM_BARS) + BAR_PADDING/2;
+  const end = (i+1)*(canvas.width/NUM_BARS) - BAR_PADDING/2;
+  ctx.fillRect(begin, canvas.height/(ele+1), end-begin, canvas.height - canvas.height/(ele+1));
 }

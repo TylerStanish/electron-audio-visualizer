@@ -1,33 +1,58 @@
+import {getTransformedSpectrum, transformToVisualBins} from './audio/caseif/spectrum_algorithms';
 import render from "./visual";
+import {maxFftSize, temporalSmoothing} from "./audio/caseif/config";
 
+const input = <HTMLInputElement>document.getElementById('audio_file');
+const audioPlayer = <HTMLAudioElement> document.getElementById('audio_player');
+let analyzer;
+let bufferSource;
+let context = new AudioContext();
+let scriptProcessor;
 
-const coreAudio = require('node-core-audio');
-const ft = require('fourier-transform/asm');
+setupAudioNodes();
 
-import processAudio from "./audio";
+input.onchange = function () {
+  scriptProcessor.onaudioprocess = handleAudio;
+  audioPlayer.src = URL.createObjectURL(input.files[0]);
 
-let engine = coreAudio.createNewAudioEngine();
+  const fileReader = new FileReader();
+  fileReader.readAsArrayBuffer(input.files[0]);
+  // fileReader.readAsDataURL(input.files[0]);
 
-const options = {
-  inputChannels: 1,
-  outputChannels: 1,
-  inputDevice: 2
+  fileReader.onloadend = (file) => {
+    console.log('the file', file);
+
+    context.decodeAudioData(fileReader.result, buffer => {
+      bufferSource.buffer = buffer;
+      bufferSource.start(0);
+    });
+  };
 };
 
-engine.setOptions(options);
-console.log(
-  engine.getDeviceName(0),
-  engine.getDeviceName(1),
-  engine.getDeviceName(2),
-  engine.getDeviceName(3),
-  engine.getDeviceName(4)
-);
+function handleAudio(){
+  let initialArray = new Uint8Array(analyzer.frequencyBinCount);
+  analyzer.getByteFrequencyData(initialArray);
+  let array = transformToVisualBins(initialArray);
+  let array1 = getTransformedSpectrum(array);
+  drawSpectrum(array1);
+}
 
-engine.addAudioCallback(function(inputBuffer){
-  let spectrum = ft(inputBuffer[0]);
-  processAudio(spectrum);
-  // return inputBuffer;
-});
+function drawSpectrum(arr){
+  render(arr);
+}
 
+function setupAudioNodes(){
+  bufferSource = context.createBufferSource();
+  bufferSource.connect(context.destination);
 
-// renderInit();
+  scriptProcessor = context.createScriptProcessor(1024, 1, 1);
+  scriptProcessor.connect(context.destination);
+
+  analyzer = context.createAnalyser();
+  analyzer.connect(scriptProcessor);
+  // analyzer.smoothingTimeConstant = temporalSmoothing;
+  analyzer.minDecibels = -100;
+  analyzer.maxDecibels = -33;
+  analyzer.fftSize = maxFftSize;
+  bufferSource.connect(analyzer);
+}
