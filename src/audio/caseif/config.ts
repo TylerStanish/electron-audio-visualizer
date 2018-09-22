@@ -40,7 +40,7 @@ export var temporalSmoothing = 0.2; // passed directly to the JS analyzer node
 /* * Spectrum margin dropoff settings * */
 /* ************************************ */
 export var headMargin = 7; // the size of the head margin dropoff zone
-export var tailMargin = 0; // the size of the tail margin dropoff zone
+export var tailMargin = 7; // the size of the tail margin dropoff zone
 export var minMarginWeight = 0.7; // the minimum weight applied to bars in the dropoff zone
 
 /* *************************** */

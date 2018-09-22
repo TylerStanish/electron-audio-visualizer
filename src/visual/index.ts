@@ -7,8 +7,8 @@ let lastFFT = [];
 
 export default function render(finalizedBucketizedFFT: Array<number>){
 
-  canvas.height = 300;
-  canvas.width = 900;
+  canvas.height = innerHeight;
+  canvas.width = innerWidth;
 
   for(let i=0; i<NUM_BARS; i++){
     ctx.fillStyle = 'orange';

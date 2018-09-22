@@ -4,13 +4,13 @@ import * as path from 'path';
 let mainWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({width: 1920, height: 600});
+  mainWindow = new BrowserWindow({width: 1920, height: 350});
   // mainWindow = new BrowserWindow({width: 900, height: 600});
 
   mainWindow.loadFile(path.resolve(__dirname, '../index.html'));
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
