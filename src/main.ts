@@ -4,7 +4,7 @@ import * as path from 'path';
 let mainWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({width: 1920, height: 600});
+  mainWindow = new BrowserWindow({width: 1920, height: 375});
   // mainWindow = new BrowserWindow({width: 900, height: 600});
 
   mainWindow.loadFile(path.resolve(__dirname, '../index.html'));

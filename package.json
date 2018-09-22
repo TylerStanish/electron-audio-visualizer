@@ -1,7 +1,7 @@
 {
-  "name": "electron-quick-start",
+  "name": "AudioVisualizer",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "A minimal audio visualizer electron application",
   "main": "main.js",
   "scripts": {
     "start": "npm run build && electron build/main.js",
@@ -18,11 +18,9 @@
     "tutorial",
     "demo"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "Tyler Stanish",
   "dependencies": {
-    "fourier-transform": "^1.1.2",
-    "node-core-audio": "github:ZECTBynmo/node-core-audio"
+    "typescript": "^3.0.3"
   },
   "devDependencies": {
     "electron": "^2.0.8"
