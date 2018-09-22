@@ -21,6 +21,7 @@ input.onchange = function () {
 
   fileReader.onloadend = (file) => {
     console.log('the file', file);
+    input.hidden = true;
 
     context.decodeAudioData(<ArrayBuffer>fileReader.result, buffer => {
       bufferSource.buffer = buffer;
