@@ -2,7 +2,7 @@
 import {NUM_BARS, SMOOTHING_PASSES, SMOOTHING_POINTS} from "../../config/index";
 import {
   headMargin, headMarginSlope, marginDecay,
-  minMarginWeight,
+  minMarginWeight, smoothingPasses, smoothingPoints,
   spectrumEnd, spectrumExponentScale, spectrumHeight,
   spectrumMaxExponent, spectrumMinExponent,
   spectrumScale,
@@ -26,8 +26,8 @@ function smooth(array) {
  */
 function savitskyGolaySmooth(array) {
   var lastArray = array;
-  for (var pass = 0; pass < SMOOTHING_PASSES; pass++) {
-    var sidePoints = Math.floor(SMOOTHING_POINTS / 2); // our window is centered so this is both nL and nR
+  for (var pass = 0; pass < smoothingPasses; pass++) {
+    var sidePoints = Math.floor(smoothingPoints / 2); // our window is centered so this is both nL and nR
     var cn = 1 / (2 * sidePoints + 1); // constant
     var newArr = [];
     for (var i = 0; i < sidePoints; i++) {

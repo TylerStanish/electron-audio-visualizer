@@ -21,8 +21,8 @@ export var spectrumStart = 4; // the first bin rendered in the spectrum
 export var spectrumEnd = 1200; // the last bin rendered in the spectrum
 export var spectrumScale = 2.5; // the logarithmic scale to adjust spectrum values to
 // EXPONENTIAL TRANSFORMATION
-export var spectrumMaxExponent = 25; // the max exponent to raise spectrum values to
-export var spectrumMinExponent = 8; // the min exponent to raise spectrum values to
+export var spectrumMaxExponent = 23; // the max exponent to raise spectrum values to
+export var spectrumMinExponent = 15; // the min exponent to raise spectrum values to
 export var spectrumExponentScale = 2; // the scale for spectrum exponents
 // DROP SHADOW
 export var spectrumShadowBlur = 6; // the blur radius of the spectrum's drop shadow
@@ -32,15 +32,15 @@ export var spectrumShadowOffsetY = 0; // the y-offset of the spectrum's drop sha
 /* ********************** */
 /* * Smoothing settings * */
 /* ********************** */
-export var smoothingPoints = 3; // points to use for algorithmic smoothing. Must be an odd number.
+export var smoothingPoints = 7; // points to use for algorithmic smoothing. Must be an odd number.
 export var smoothingPasses = 1; // number of smoothing passes to execute
-export var temporalSmoothing = 0.2; // passed directly to the JS analyzer node
+export var temporalSmoothing = 0.6; // passed directly to the JS analyzer node
 
 /* ************************************ */
 /* * Spectrum margin dropoff settings * */
 /* ************************************ */
 export var headMargin = 7; // the size of the head margin dropoff zone
-export var tailMargin = 7; // the size of the tail margin dropoff zone
+export var tailMargin = 0; // the size of the tail margin dropoff zone
 export var minMarginWeight = 0.7; // the minimum weight applied to bars in the dropoff zone
 
 /* *************************** */

@@ -51,7 +51,7 @@ function setupAudioNodes(){
 
   analyzer = context.createAnalyser();
   analyzer.connect(scriptProcessor);
-  // analyzer.smoothingTimeConstant = temporalSmoothing;
+  analyzer.smoothingTimeConstant = temporalSmoothing;
   analyzer.minDecibels = -100;
   analyzer.maxDecibels = -33;
   analyzer.fftSize = maxFftSize;
